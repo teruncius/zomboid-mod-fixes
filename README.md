@@ -32,9 +32,9 @@ File: `client/Recipes.lua` (empty)
 
 ### Bug Zapper 9000: Inventive trait bonus missing for skill recipes
 
-Bug Zapper 9000 replaces `xpUpdate.onLoad` with an older copy that ignores the Inventive trait. This mod registers the vanilla function again.
+Bug Zapper 9000 replaces `xpUpdate.onLoad` with an older copy that ignores the Inventive trait. This mod blanks that file, so the vanilla function stays registered.
 
-File: `zz_ModFixes_SkillRecipes.lua`
+File: `server/Recipes.lua` (empty)
 
 ### Bug Zapper 9000: restored forage icons re-roll their item count
 
