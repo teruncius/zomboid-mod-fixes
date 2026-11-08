@@ -1,4 +1,5 @@
 version=1
+id=3836342989
 title=Mod Fixes
 description=Small fixes for other mods. Restores Mechanics XP for installing and uninstalling vehicle parts when Bug Zapper 9000 is active, and fixes a Project Summer Car error on vehicles without a windshield window.
 tags=Build 42;Misc;Multiplayer
