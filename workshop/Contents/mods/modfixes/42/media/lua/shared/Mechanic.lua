@@ -1,0 +1,2 @@
+-- Intentionally empty. Takes the place of the file at this path in Bug Zapper 9000,
+-- so that it never runs: its copies of the part actions throw in 42.21.

@@ -8,9 +8,9 @@ Project Zomboid (Build 42) mod with small fixes for other mods. Each fix only ch
 
 Bug Zapper 9000 replaces `ISInstallVehiclePart:complete()` and `ISUninstallVehiclePart:complete()` with a copy that calls `sendObjectChange('mechanicActionDone', ...)`. The method now takes an `IsoObjectChange`, so the call throws. The part is already swapped by then, but `addMechanicsItem` and `addXp` never run. Bug Zapper has no option for this patch.
 
-This mod restores the vanilla 42.21 functions and keeps Bug Zapper's fix for failed uninstalls always damaging the part.
+This mod blanks that file, so the vanilla functions run. Vanilla's failed uninstalls always damage the part, so it keeps a copy of the uninstall function with that fixed.
 
-File: `zz_ModFixes_PartActions.lua`
+Files: `shared/Mechanic.lua` (empty), `zz_ModFixes_PartActions.lua`
 
 ### Project Summer Car: error on vehicles without a windshield window
 
@@ -41,6 +41,10 @@ File: `zz_ModFixes_SkillRecipes.lua`
 Bug Zapper 9000 replaces `ISBaseIcon:initItemCount` with a copy that ignores `self.icon.count`. This mod keeps its fix for the item count range and adds that branch back.
 
 File: `zz_ModFixes_Foraging.lua`
+
+## Empty files
+
+A Lua path only runs once, from the mod loaded last. The empty files in this mod use the same paths as Bug Zapper 9000, which stops its harmful patches without copying vanilla code. This needs `loadModAfter=\BugZapper9000`, and they would also blank a file of another mod at the same path.
 
 ## Updates
 
