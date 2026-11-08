@@ -30,6 +30,12 @@ Bug Zapper 9000 replaces the `OnCreate` of `MakeImprovisedGasMask` with one that
 
 File: `zz_ModFixes_GasMask.lua`
 
+### Bug Zapper 9000: Inventive trait bonus missing for skill recipes
+
+Bug Zapper 9000 replaces `xpUpdate.onLoad` with an older copy that ignores the Inventive trait. This mod registers the vanilla function again.
+
+File: `zz_ModFixes_SkillRecipes.lua`
+
 ## Updates
 
 The fixed functions are copies, so compare them with the game and the original mods after updates.
