@@ -8,7 +8,7 @@ Project Zomboid (Build 42) mod with small fixes for other mods. Each fix only ch
 
 Bug Zapper 9000 replaces `ISInstallVehiclePart:complete()` and `ISUninstallVehiclePart:complete()` with a copy that calls `sendObjectChange('mechanicActionDone', ...)`. The method now takes an `IsoObjectChange`, so the call throws. The part is already swapped by then, but `addMechanicsItem` and `addXp` never run. Bug Zapper has no option for this patch.
 
-This mod blanks that file, so the vanilla functions run. Vanilla's failed uninstalls always damage the part, so it keeps a copy of the uninstall function with that fixed.
+This mod blanks that file, so the vanilla functions run. Vanilla's failed uninstalls always damage the part, so it keeps a copy of the uninstall function with that fixed. That copy is only active with Bug Zapper 9000.
 
 Files: `shared/Mechanic.lua` (empty), `zz_ModFixes_PartActions.lua`
 

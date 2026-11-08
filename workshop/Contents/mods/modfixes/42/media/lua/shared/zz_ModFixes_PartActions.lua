@@ -2,6 +2,8 @@
 -- uninstall only damages the part on a failure roll. Vanilla compares the wrong
 -- way round, so every failed uninstall damages it.
 
+if getActivatedMods():contains("\\BugZapper9000") then
+
 require "Vehicles/TimedActions/ISUninstallVehiclePart"
 
 function ISUninstallVehiclePart:complete()
@@ -61,4 +63,6 @@ function ISUninstallVehiclePart:complete()
    	end
 
 	return true
+end
+
 end
