@@ -24,6 +24,12 @@ Bug Zapper 9000 replaces `onAddBaitToWater` and `onAddBaitToFishingNet` with a s
 
 File: `zz_ModFixes_FishingBait.lua`
 
+### Bug Zapper 9000: improvised gas masks lose their filter
+
+Bug Zapper 9000 replaces the `OnCreate` of `MakeImprovisedGasMask` with one that removes the filter, while its matching output change no longer applies in 42.21. This mod restores the vanilla `OnCreate`.
+
+File: `zz_ModFixes_GasMask.lua`
+
 ## Updates
 
 The fixed functions are copies, so compare them with the game and the original mods after updates.
