@@ -36,6 +36,12 @@ Bug Zapper 9000 replaces `xpUpdate.onLoad` with an older copy that ignores the I
 
 File: `zz_ModFixes_SkillRecipes.lua`
 
+### Bug Zapper 9000: restored forage icons re-roll their item count
+
+Bug Zapper 9000 replaces `ISBaseIcon:initItemCount` with a copy that ignores `self.icon.count`. This mod keeps its fix for the item count range and adds that branch back.
+
+File: `zz_ModFixes_Foraging.lua`
+
 ## Updates
 
 The fixed functions are copies, so compare them with the game and the original mods after updates.
