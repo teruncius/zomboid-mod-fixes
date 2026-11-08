@@ -18,6 +18,12 @@ File: `zz_ModFixes_PartActions.lua`
 
 File: `zz_ModFixes_SummerCar.lua`
 
+### Bug Zapper 9000: errors when adding fishing bait
+
+Bug Zapper 9000 replaces `onAddBaitToWater` and `onAddBaitToFishingNet` with a search that calls `PropertyContainer.Is`, which no longer exists. This mod restores the vanilla 42.21 actions and their local path helpers.
+
+File: `zz_ModFixes_FishingBait.lua`
+
 ## Updates
 
 The fixed functions are copies, so compare them with the game and the original mods after updates.
