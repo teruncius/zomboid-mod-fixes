@@ -24,11 +24,11 @@ Bug Zapper 9000 replaces `onAddBaitToWater` and `onAddBaitToFishingNet` with a s
 
 File: `client/NearestWaterSquare.lua` (empty)
 
-### Bug Zapper 9000: improvised gas masks lose their filter
+### Bug Zapper 9000: outdated recipe changes
 
-Bug Zapper 9000 replaces the `OnCreate` of `MakeImprovisedGasMask` with one that removes the filter, while its matching output change no longer applies in 42.21. This mod restores the vanilla `OnCreate`.
+Bug Zapper 9000 gives `MakeImprovisedGasMask` an `OnCreate` that removes the filter, drops `flags[IsEmpty]` from the cake and pie pan recipes and rewrites the blade sharpening input in an old format. Its other recipe changes are already in vanilla or no longer match. This mod blanks that file, so the vanilla recipes stay.
 
-File: `zz_ModFixes_GasMask.lua`
+File: `client/Recipes.lua` (empty)
 
 ### Bug Zapper 9000: Inventive trait bonus missing for skill recipes
 
