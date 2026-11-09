@@ -2,7 +2,7 @@
 -- PropertyContainer.Is, which no longer exists. These are the vanilla 42.21
 -- functions. The path helpers are copies, since vanilla keeps them local.
 
-if getActivatedMods():contains("\\BugZapper9000") then
+if getActivatedMods():contains("BugZapper9000") or getActivatedMods():contains("\\BugZapper9000") then
 
 local function isValidWaterSquare(square)
     if square == nil then

@@ -1,7 +1,7 @@
 -- Bug Zapper 9000 fixes the item count range, but its copy lacks the 42.21 branch
 -- that keeps the stored count of a restored icon. This has both.
 
-if getActivatedMods():contains("\\BugZapper9000") then
+if getActivatedMods():contains("BugZapper9000") or getActivatedMods():contains("\\BugZapper9000") then
 
 function ISBaseIcon:initItemCount()
     if self.icon and self.icon.count then
