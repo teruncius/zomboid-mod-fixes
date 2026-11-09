@@ -1,7 +1,7 @@
 -- Stops Project Summer Car's cabin temperature update from throwing on vehicles
 -- whose Windshield part has no window. Copy of its 42.15 function with a nil check.
 
-if getActivatedMods():contains("\\ProjectSummerCar") then
+if getActivatedMods():contains("ProjectSummerCar") or getActivatedMods():contains("\\ProjectSummerCar") then
 
 require "Project_Summer_Car_Server"
 

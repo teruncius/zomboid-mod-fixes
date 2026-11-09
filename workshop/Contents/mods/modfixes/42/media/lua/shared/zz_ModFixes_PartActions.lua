@@ -8,7 +8,7 @@
 -- The zz_ prefix and loadModAfter keep this after Bug Zapper's Mechanic.lua. It
 -- stays in shared so that damnlibGlass, which loads from server, wraps this copy.
 
-if getActivatedMods():contains("\\BugZapper9000") then
+if getActivatedMods():contains("BugZapper9000") or getActivatedMods():contains("\\BugZapper9000") then
 
 require "Vehicles/TimedActions/ISInstallVehiclePart"
 require "Vehicles/TimedActions/ISUninstallVehiclePart"
