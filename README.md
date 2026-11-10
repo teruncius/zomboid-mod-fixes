@@ -42,6 +42,12 @@ Bug Zapper 9000 replaces `ISBaseIcon:initItemCount` with a copy that ignores `se
 
 File: `zz_ModFixes_Foraging.lua`
 
+### Real USA: black floor tiles
+
+Real USA's map uses `floors_exterior_natural_01` tiles that 42.22 still defines but has no textures for (`_0`, `_1`, `_2`, `_13`, `_14`, `_18`, `_19`, `_40`, `_42`, `_43`, `_48` to `_51`), so these floors render black. This mod gives these sprites a placeholder texture on the client: dirt, or a tile from the same row of the tileset that still has a texture. It only changes the texture, not the saved sprite, and skips sprites that have a texture again.
+
+File: `zz_ModFixes_RealUSATiles.lua`
+
 ## Updates
 
 The fixed functions are copies, so compare them with the game and the original mods after updates.
@@ -51,5 +57,5 @@ The fixed functions are copies, so compare them with the game and the original m
 Add the mod after the mods it fixes:
 
 ```ini
-Mods=...;BugZapper9000;...;ProjectSummerCar;...;com.github.teruncius.modfixes
+Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;com.github.teruncius.modfixes
 ```
