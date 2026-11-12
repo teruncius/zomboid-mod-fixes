@@ -48,6 +48,12 @@ Real USA's map uses `floors_exterior_natural_01` tiles that 42.22 still defines 
 
 File: `zz_ModFixes_RealUSATiles.lua`
 
+### Vanilla: errors when reloading with a chest rig, ALICE belt or shoulder holster
+
+`ISReloadWeaponAction.setReloadSpeed` reads the worn ammo strap without a nil check. With a fast reload tag from another item and no ammo strap, reloading a shotgun or loading bullets into a magazine throws, and the reload action then throws on every update. This mod adds the nil check. It is always active.
+
+File: `zz_ModFixes_ReloadSpeed.lua`
+
 ## Updates
 
 The fixed functions are copies, so compare them with the game and the original mods after updates.
