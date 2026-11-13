@@ -54,6 +54,12 @@ File: `zz_ModFixes_RealUSATiles.lua`
 
 File: `zz_ModFixes_ReloadSpeed.lua`
 
+### Bandits: error when a bandit has no square
+
+`Bandit.SayLocation` reads the bandit's square without a nil check. On multiplayer clients a bandit can be updated while its square is not loaded, which throws on every update. This mod skips the callout while the bandit has no square. It is only active with Bandits.
+
+File: `zz_ModFixes_BanditsSayLocation.lua`
+
 ## Updates
 
 The fixed functions are copies, so compare them with the game and the original mods after updates.
@@ -63,5 +69,5 @@ The fixed functions are copies, so compare them with the game and the original m
 Add the mod after the mods it fixes:
 
 ```ini
-Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;com.github.teruncius.modfixes
+Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;com.github.teruncius.modfixes
 ```
