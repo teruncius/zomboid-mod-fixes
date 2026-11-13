@@ -3,5 +3,5 @@ id=com.github.teruncius.modfixes
 author=teruncius
 modversion=0.1.0
 versionMin=42.21.0
-loadModAfter=\BugZapper9000,\ProjectSummerCar,\RealUSA
+loadModAfter=\BugZapper9000,\ProjectSummerCar,\RealUSA,\Bandits2
 description=Small fixes for other mods. Restores Mechanics XP for installing and uninstalling vehicle parts when Bug Zapper 9000 is active, fixes a Project Summer Car error on vehicles without a windshield window, and gives Real USA floor tiles that have no texture in 42.22 a placeholder.
