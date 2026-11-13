@@ -60,6 +60,20 @@ File: `zz_ModFixes_ReloadSpeed.lua`
 
 File: `zz_ModFixes_BanditsSayLocation.lua`
 
+### Vanilla: no recoil pad or laser for the tactical shotgun
+
+The recoil pad and the laser can't be mounted on the JS-3T Tactical Shotgun, even though its item script names a recoil pad model. This mod adds the shotgun to both parts' `MountOn` lists. The parts only change the stats: the model has no attachment points for them, so they don't show. It is always active.
+
+File: `zz_ModFixes_TacticalShotgunParts.lua`
+
+### RadArchery Restrung: no laser or sights for the crossbow
+
+This mod adds the crossbow to the `MountOn` lists of the laser, the x2 scope and the red dot. The parts only change the stats: the model has no attachment points for them, so they don't show. The x2 scope and the red dot share the scope slot, so the crossbow takes one of them. RadArchery sets the crossbow's hit chance every tick, so the laser only shortens the aiming time. It is only active with RadArchery Restrung.
+
+File: `zz_ModFixes_CrossbowParts.lua`
+
+Both use `zz_ModFixes_MountOn.lua`. It reads a part's current `MountOn` list from the game, appends the weapon and writes the whole list back, so weapons from the game and other mods stay in the list.
+
 ## Updates
 
 The fixed functions are copies, so compare them with the game and the original mods after updates.
