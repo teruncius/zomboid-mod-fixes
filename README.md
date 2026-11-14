@@ -66,6 +66,12 @@ The "remove broken vehicle" option checks for a welding mask with `item:hasTag("
 
 File: `ms.car-dismantle.lua`
 
+### True Moozic: errors when loot spawns in bags
+
+When the game fills the loot of a bag, it fires `OnFillContainer` with the bag's loot table (an `ItemPickerContainer`) instead of an `ItemContainer`. True Moozic's handler indexes it, which throws. The handler is a local function, so this mod replaces the whole file with a copy that skips these calls. The copy only loads instead of the original when this mod loads after True Moozic, and it only runs with True Moozic.
+
+File: `TCLootControl.lua`
+
 ### Vanilla: no recoil pad or laser for the tactical shotgun
 
 The recoil pad and the laser can't be mounted on the JS-3T Tactical Shotgun, even though its item script names a recoil pad model. This mod adds the shotgun to both parts' `MountOn` lists. The parts only change the stats: the model has no attachment points for them, so they don't show. It is always active.
@@ -89,5 +95,5 @@ The fixed functions are copies, so compare them with the game and the original m
 Add the mod after the mods it fixes:
 
 ```ini
-Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;msauce.simple;...;com.github.teruncius.modfixes
+Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;msauce.simple;...;TrueMoozic;...;com.github.teruncius.modfixes
 ```
