@@ -60,6 +60,12 @@ File: `zz_ModFixes_ReloadSpeed.lua`
 
 File: `zz_ModFixes_BanditsSayLocation.lua`
 
+### msauce simple mods: errors when right-clicking a vehicle
+
+The "remove broken vehicle" option checks for a welding mask with `item:hasTag("WeldingMask")`. `hasTag` only takes an `ItemTag` now, so the check throws for every item in the inventory when the vehicle menu opens, and the option always shows the welding mask as missing. The check is a local function, so this mod replaces the whole file with a copy that uses `ItemTag.WELDING_MASK`, like vanilla does. The copy only loads instead of the original when this mod loads after msauce simple mods, and it only runs with msauce simple mods.
+
+File: `ms.car-dismantle.lua`
+
 ### Vanilla: no recoil pad or laser for the tactical shotgun
 
 The recoil pad and the laser can't be mounted on the JS-3T Tactical Shotgun, even though its item script names a recoil pad model. This mod adds the shotgun to both parts' `MountOn` lists. The parts only change the stats: the model has no attachment points for them, so they don't show. It is always active.
@@ -83,5 +89,5 @@ The fixed functions are copies, so compare them with the game and the original m
 Add the mod after the mods it fixes:
 
 ```ini
-Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;com.github.teruncius.modfixes
+Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;msauce.simple;...;com.github.teruncius.modfixes
 ```
