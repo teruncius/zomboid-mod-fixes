@@ -66,6 +66,12 @@ The "remove broken vehicle" option checks for a welding mask with `item:hasTag("
 
 File: `ms.car-dismantle.lua`
 
+### msauce simple mods: error when adding fuel to a campfire or stove
+
+The "add fuel" menu for items in a campfire or wood stove looks for a fire starter with `item:hasTag("StartFire")`. `hasTag` only takes an `ItemTag` now, so the search throws and the "light campfire" option never shows. This mod replaces the whole file with a copy that uses `ItemTag.START_FIRE`, like vanilla does. The same load order rules apply as for the vehicle menu fix.
+
+File: `ms.destroy4fuel.lua`
+
 ### True Moozic: errors when loot spawns in bags
 
 When the game fills the loot of a bag, it fires `OnFillContainer` with the bag's loot table (an `ItemPickerContainer`) instead of an `ItemContainer`. True Moozic's handler indexes it, which throws. The handler is a local function, so this mod replaces the whole file with a copy that skips these calls. The copy only loads instead of the original when this mod loads after True Moozic, and it only runs with True Moozic.
