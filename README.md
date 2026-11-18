@@ -60,6 +60,12 @@ File: `zz_ModFixes_ReloadSpeed.lua`
 
 File: `zz_ModFixes_BanditsSayLocation.lua`
 
+### YANMC Bandits Core: stack overflow with Bandits Radio Expansion
+
+On the first tick, YANMC's CPU probe hooks the `ZombiePrograms` stages and tracks each table it hooked by its `tostring` name. Bandits Radio Expansion gives every program table an `__index` that returns a fallback stage for any missing key. So `tostring` runs a `__tostring` "stage", which calls `BanditBrain.Get` on the table. There, `getModData` returns another fallback stage, and this repeats until the stack overflows. The probe's hook function is local, so this mod replaces `YANMCPerformanceProbe.InstallTables` with a copy that tracks the tables by identity. It is only active with YANMC Bandits Core.
+
+File: `zz_ModFixes_YANMCProbe.lua`
+
 ### msauce simple mods: errors when right-clicking a vehicle
 
 The "remove broken vehicle" option checks for a welding mask with `item:hasTag("WeldingMask")`. `hasTag` only takes an `ItemTag` now, so the check throws for every item in the inventory when the vehicle menu opens, and the option always shows the welding mask as missing. The check is a local function, so this mod replaces the whole file with a copy that uses `ItemTag.WELDING_MASK`, like vanilla does. The copy only loads instead of the original when this mod loads after msauce simple mods, and it only runs with msauce simple mods.
@@ -101,5 +107,5 @@ The fixed functions are copies, so compare them with the game and the original m
 Add the mod after the mods it fixes:
 
 ```ini
-Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;msauce.simple;...;TrueMoozic;...;com.github.teruncius.modfixes
+Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;msauce.simple;...;TrueMoozic;...;YANMCBanditsCore;...;com.github.teruncius.modfixes
 ```
