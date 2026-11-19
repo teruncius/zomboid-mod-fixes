@@ -109,3 +109,9 @@ Add the mod after the mods it fixes:
 ```ini
 Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;msauce.simple;...;TrueMoozic;...;YANMCBanditsCore;...;com.github.teruncius.modfixes
 ```
+
+### RadArchery Restrung: bolts don't fit in the quiver
+
+The quivers only accept items with the `radarchery:arrow` tag, and the crossbow bolts don't have it, so they can't go in. This mod also accepts the whole bolts from RadArchery's bolt list. Broken bolts stay out, like broken arrows. Loading the crossbow moves a bolt from the quiver to the main inventory first, like vanilla ammo. Bolts in the quiver don't show on the character. It is only active with RadArchery Restrung.
+
+File: `zz_ModFixes_QuiverBolts.lua`
