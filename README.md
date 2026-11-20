@@ -68,7 +68,7 @@ File: `zz_ModFixes_YANMCProbe.lua`
 
 ### msauce simple mods: errors when right-clicking a vehicle
 
-The "remove broken vehicle" option checks for a welding mask with `item:hasTag("WeldingMask")`. `hasTag` only takes an `ItemTag` now, so the check throws for every item in the inventory when the vehicle menu opens, and the option always shows the welding mask as missing. The check is a local function, so this mod replaces the whole file with a copy that uses `ItemTag.WELDING_MASK`, like vanilla does. The copy only loads instead of the original when this mod loads after msauce simple mods, and it only runs with msauce simple mods.
+The "remove broken vehicle" option checks for a welding mask with `item:hasTag("WeldingMask")`. `hasTag` only takes an `ItemTag` now, so the check throws for every item in the inventory when the vehicle menu opens, and the option always shows the welding mask as missing. It also reads the engine's condition without a nil check, which throws for vehicles without an engine, like trailers. The welding mask check is a local function, so this mod replaces the whole file with a copy that uses `ItemTag.WELDING_MASK`, like vanilla does. The copy only loads instead of the original when this mod loads after msauce simple mods, and it only runs with msauce simple mods.
 
 File: `ms.car-dismantle.lua`
 
@@ -77,6 +77,12 @@ File: `ms.car-dismantle.lua`
 The "add fuel" menu for items in a campfire or wood stove looks for a fire starter with `item:hasTag("StartFire")`. `hasTag` only takes an `ItemTag` now, so the search throws and the "light campfire" option never shows. This mod replaces the whole file with a copy that uses `ItemTag.START_FIRE`, like vanilla does. The same load order rules apply as for the vehicle menu fix.
 
 File: `ms.destroy4fuel.lua`
+
+### msauce simple mods: dismantling a broken vehicle never starts
+
+msauce simple mods offers "Dismantle Car Wreck" for normal vehicles whose engine condition is below 11, but queues vanilla's `ISRemoveBurntVehicle`. Its constructor only keeps the vehicle if the vehicle is burnt or smashed, so for these vehicles the character walks to it and the action is dropped. This mod also keeps the vehicle when its engine condition is below 11. It is only active with msauce simple mods.
+
+File: `zz_ModFixes_DismantleWreck.lua`
 
 ### True Moozic: errors when loot spawns in bags
 

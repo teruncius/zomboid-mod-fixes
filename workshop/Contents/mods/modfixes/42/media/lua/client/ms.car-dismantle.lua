@@ -2,7 +2,8 @@
 -- loaded instead). Its welding mask check calls item:hasTag("WeldingMask"), but
 -- hasTag only takes an ItemTag now, so it throws for every item in the
 -- inventory when the vehicle menu opens. Copy of the mod's file with the check
--- from vanilla ISVehicleMenu.
+-- from vanilla ISVehicleMenu, and a nil check for vehicles without an engine,
+-- like trailers.
 
 if getActivatedMods():contains("msauce.simple") or getActivatedMods():contains("\\msauce.simple") then
 
@@ -22,8 +23,9 @@ function ISVehicleMenu.FillMenuOutsideVehicle(player, context, vehicle, test)
     local playerObj = ms_tools.player.getObject(player)
 
     -- remove broken vehicles
+    local engine = vehicle:getPartById("Engine")
     if not(string.match(vehicle:getScript():getName(), "Burnt") or string.match(vehicle:getScript():getName(), "Smashed")) and
-            vehicle:getPartById("Engine"):getCondition() < 11 then
+            engine ~= nil and engine:getCondition() < 11 then
         local option = context:addOption(getText("ContextMenu_RemoveBurntVehicle") , playerObj, ISVehicleMenu.onRemoveBurntVehicle, vehicle);
         local toolTip = ISToolTip:new();
         toolTip:initialise();
