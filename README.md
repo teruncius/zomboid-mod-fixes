@@ -86,7 +86,7 @@ File: `zz_ModFixes_DismantleWreck.lua`
 
 ### msauce simple mods: inventory errors with the inventory filter on
 
-With its inventory filter on, msauce simple mods hides key rings by returning nothing from `ISInventoryPage:addContainerButton`. Mods that wrap this function and use the button then throw when the inventory opens, like CleanUI's container button sorting. This mod replaces the whole file with a copy that adds the key ring button, takes it back out of the list and returns it, so the key rings stay hidden. The same load order rules apply as for the vehicle menu fix.
+With its inventory filter on, msauce simple mods hides key rings by returning nothing from `ISInventoryPage:addContainerButton`. Mods that wrap this function and use the button then throw when the inventory opens, like CleanUI's container button sorting. This mod replaces the whole file with a copy that adds the key ring button, takes it back out of the list and returns it, so the key rings stay hidden. The hidden button only goes back to the button pool on the next refresh, because Nested Containers still returns it for the key ring until then. The same load order rules apply as for the vehicle menu fix.
 
 File: `ms.player.loot.filter.lua`
 

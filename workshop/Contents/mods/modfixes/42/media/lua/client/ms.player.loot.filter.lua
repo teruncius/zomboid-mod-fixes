@@ -17,15 +17,32 @@ function ISInventoryPage:addContainerButton(container, texture, name, tooltip)
     if not string.contains(container:getType(), "KeyRing") then return ISIPAddButton(self, container, texture, name, tooltip) end
     if ISInventoryPage.pre_reorder_addContainerButton then return ISIPAddButton(self, container, texture, name, tooltip) end
 
+    -- Only hide a button this call added. Mods like Nested Containers return the
+    -- button they already listed when a container is added twice.
+    local count = #self.backpacks
     local button = ISIPAddButton(self, container, texture, name, tooltip)
-    if button and self.backpacks[#self.backpacks] == button then
-        table.remove(self.backpacks, #self.backpacks)
+    if button and #self.backpacks == count + 1 and self.backpacks[count + 1] == button then
+        table.remove(self.backpacks, count + 1)
         self.containerButtonPanel:removeChild(button)
-        self.buttonPool = self.buttonPool or {}
-        table.insert(self.buttonPool, button)
+        -- Keep it out of the pool until the next refresh, so no other container
+        -- gets it while other mods still hold it for the key ring.
+        self.msHiddenKeyRingButtons = self.msHiddenKeyRingButtons or {}
+        table.insert(self.msHiddenKeyRingButtons, button)
     end
     return button
 
+end
+
+local ISIPRefreshBackpacks = ISInventoryPage.refreshBackpacks
+function ISInventoryPage:refreshBackpacks()
+    if self.msHiddenKeyRingButtons then
+        self.buttonPool = self.buttonPool or {}
+        for _, button in ipairs(self.msHiddenKeyRingButtons) do
+            table.insert(self.buttonPool, button)
+        end
+        self.msHiddenKeyRingButtons = nil
+    end
+    return ISIPRefreshBackpacks(self)
 end
 
 local basePageBackpackRMD = ISInventoryPage.onBackpackRightMouseDown
