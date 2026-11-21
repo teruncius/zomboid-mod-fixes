@@ -84,6 +84,12 @@ msauce simple mods offers "Dismantle Car Wreck" for normal vehicles whose engine
 
 File: `zz_ModFixes_DismantleWreck.lua`
 
+### msauce simple mods: inventory errors with the inventory filter on
+
+With its inventory filter on, msauce simple mods hides key rings by returning nothing from `ISInventoryPage:addContainerButton`. Mods that wrap this function and use the button then throw when the inventory opens, like CleanUI's container button sorting. This mod replaces the whole file with a copy that adds the key ring button, takes it back out of the list and returns it, so the key rings stay hidden. The same load order rules apply as for the vehicle menu fix.
+
+File: `ms.player.loot.filter.lua`
+
 ### True Moozic: errors when loot spawns in bags
 
 When the game fills the loot of a bag, it fires `OnFillContainer` with the bag's loot table (an `ItemPickerContainer`) instead of an `ItemContainer`. True Moozic's handler indexes it, which throws. The handler is a local function, so this mod replaces the whole file with a copy that skips these calls. The copy only loads instead of the original when this mod loads after True Moozic, and it only runs with True Moozic.
