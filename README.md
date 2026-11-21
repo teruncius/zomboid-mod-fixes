@@ -48,6 +48,12 @@ Real USA's map uses `floors_exterior_natural_01` tiles that 42.22 still defines 
 
 File: `zz_ModFixes_RealUSATiles.lua`
 
+### Real USA: error on the world map with travel guides
+
+Real USA draws the places of read travel guides on the world map, but passes the icon's file path to `drawTextureScaledAspect` instead of a texture. This throws every frame while the map shows print media, and the icons don't show. The function that builds the path is local, so this mod lets the world map's `drawTextureScaledAspect` also take a path and loads the texture for it. It is only active with Real USA.
+
+File: `zz_ModFixes_RealUSAMapIcons.lua`
+
 ### Vanilla: errors when reloading with a chest rig, ALICE belt or shoulder holster
 
 `ISReloadWeaponAction.setReloadSpeed` reads the worn ammo strap without a nil check. With a fast reload tag from another item and no ammo strap, reloading a shotgun or loading bullets into a magazine throws, and the reload action then throws on every update. This mod adds the nil check. It is always active.
