@@ -56,7 +56,7 @@ File: `zz_ModFixes_RealUSAMapIcons.lua`
 
 ### Vanilla: errors when reloading with a chest rig, ALICE belt or shoulder holster
 
-`ISReloadWeaponAction.setReloadSpeed` reads the worn ammo strap without a nil check. With a fast reload tag from another item and no ammo strap, reloading a shotgun or loading bullets into a magazine throws, and the reload action then throws on every update. This mod adds the nil check. It is always active.
+`ISReloadWeaponAction.setReloadSpeed` reads the worn ammo strap without a nil check, and calls `getMagazineType()` on the primary hand item, which only weapons have. With a fast reload tag from another item and no ammo strap, reloading a shotgun or loading bullets into a magazine throws, and so does loading a magazine with a non-weapon item in hand. The reload action then throws on every update. This mod adds the missing checks. It is always active.
 
 File: `zz_ModFixes_ReloadSpeed.lua`
 

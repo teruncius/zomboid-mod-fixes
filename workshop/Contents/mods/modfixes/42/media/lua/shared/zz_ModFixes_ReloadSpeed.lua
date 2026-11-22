@@ -1,9 +1,10 @@
 -- Vanilla ISReloadWeaponAction.setReloadSpeed reads the worn ammo strap without a
--- nil check. With a fast reload tag from another item (chest rig, ALICE belt,
--- shoulder holster) and no strap, reloading a shotgun or loading a magazine with
--- a non-magazine gun in hand throws. The action's start() then never finishes,
--- so its update() throws every tick. This is the vanilla 42.22 function with the
--- nil checks added.
+-- nil check, and calls getMagazineType() on whatever is in the primary hand,
+-- which only exists on HandWeapon. With a fast reload tag from another item
+-- (chest rig, ALICE belt, shoulder holster) and no strap, reloading a shotgun or
+-- loading a magazine with a non-magazine gun or a non-weapon item in hand
+-- throws. The action's start() then never finishes, so its update() throws
+-- every tick. This is the vanilla 42.22 function with the nil checks added.
 
 require "TimedActions/ISReloadWeaponAction"
 
@@ -19,6 +20,9 @@ function ISReloadWeaponAction.setReloadSpeed(character, rack)
 
 	-- check for ammo straps
 	local gun = character:getPrimaryHandItem();
+	if gun and not instanceof(gun, "HandWeapon") then
+		gun = nil;
+	end
 	local strap = character:getWornItem(ItemBodyLocation.AMMO_STRAP);
 	local strapName = strap and strap:getClothingItemName();
 	local reloadFast = character:hasEquippedTag(ItemTag.RELOAD_FAST_SHELLS) or character:hasEquippedTag(ItemTag.RELOAD_FAST_BULLETS) or character:hasEquippedTag(ItemTag.RELOAD_FAST_MAGAZINES)
