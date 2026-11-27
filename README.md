@@ -42,6 +42,12 @@ Bug Zapper 9000 replaces `ISBaseIcon:initItemCount` with a copy that ignores `se
 
 File: `zz_ModFixes_Foraging.lua`
 
+### Bug Zapper 9000: sharpening blades with a whetstone does nothing in multiplayer
+
+Bug Zapper 9000 replaces the blade input of `SharpenBlade` to add the katana. It removes the old input from the recipe's inputs but not from its io lines, and adds the new one after the whetstone. The client sends the chosen items by io line index, and Bug Zapper only changes the recipe on the client. So the server gets the blade for an index its recipe doesn't have, and the action does nothing. This mod puts the new blade input in the place of the old one, so the indexes match the server again. The katana still can't be sharpened in multiplayer, because the server doesn't have Bug Zapper's change.
+
+File: `zz_ModFixes_SharpenBlade.lua`
+
 ### Real USA: black floor tiles
 
 Real USA's map uses `floors_exterior_natural_01` tiles that 42.22 still defines but has no textures for (`_0`, `_1`, `_2`, `_13`, `_14`, `_18`, `_19`, `_40`, `_42`, `_43`, `_48` to `_51`), so these floors render black. This mod gives these sprites a placeholder texture on the client: dirt, or a tile from the same row of the tileset that still has a texture. It only changes the texture, not the saved sprite, and skips sprites that have a texture again.
