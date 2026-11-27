@@ -44,9 +44,9 @@ File: `zz_ModFixes_Foraging.lua`
 
 ### Bug Zapper 9000: sharpening blades with a whetstone does nothing in multiplayer
 
-Bug Zapper 9000 replaces the blade input of `SharpenBlade` to add the katana. It removes the old input from the recipe's inputs but not from its io lines, and adds the new one after the whetstone. The client sends the chosen items by io line index, and Bug Zapper only changes the recipe on the client. So the server gets the blade for an index its recipe doesn't have, and the action does nothing. This mod puts the new blade input in the place of the old one, so the indexes match the server again. The katana still can't be sharpened in multiplayer, because the server doesn't have Bug Zapper's change.
+Bug Zapper 9000 replaces the blade input of `SharpenBlade` to add the katana. It removes the old input from the recipe's inputs but not from its io lines, and adds the new one after the whetstone. The client sends the chosen items by io line index, and Bug Zapper only changes the recipe on the client. So the server gets the blade for an index its recipe doesn't have, and the action does nothing. This mod sets the recipe's inputs again on the client and on the server: the vanilla blade input with the katana added, followed by the whetstone. So the indexes match, and the katana can also be sharpened in multiplayer.
 
-File: `zz_ModFixes_SharpenBlade.lua`
+Files: `zz_ModFixes_SharpenBlade.lua`, `zz_ModFixes_SharpenBladeServer.lua`, `zz_ModFixes_SharpenBladeInputs.lua`
 
 ### Real USA: black floor tiles
 
