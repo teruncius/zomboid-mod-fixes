@@ -139,3 +139,11 @@ Mods=...;BugZapper9000;...;ProjectSummerCar;...;RealUSA;...;Bandits2;...;msauce.
 The quivers only accept items with the `radarchery:arrow` tag, and the crossbow bolts don't have it, so they can't go in. This mod also accepts the whole bolts from RadArchery's bolt list. Broken bolts stay out, like broken arrows. Loading the crossbow moves a bolt from the quiver to the main inventory first, like vanilla ammo. Bolts in the quiver don't show on the character. It is only active with RadArchery Restrung.
 
 File: `zz_ModFixes_QuiverBolts.lua`
+
+### Real USA: forest camps in towns
+
+Real USA lays story zones named Forest in town parks and along the roads, and also adds them to existing worlds. The game rolls its forest stories in them when one of their chunks loads, even chunks you have already visited: camps with tents, hunter and hermit camps, burials. So these show up in towns. This mod removes the Forest story zones that have at least 5 buildings within 100 tiles, 4001 of Real USA's 104305. The map's rural zones have at most 4 buildings nearby, nearly all of them none. The game saves the zones, so they stay removed. Stories already placed stay where they are. Lake story zones (fishing trips, barbecues) are kept. It is only active with Real USA.
+
+`tools/realusa_urban_stories.py` writes the list from Real USA's map. Run `just realusa-stories <Real USA mod folder>` after a Real USA update that changes the map.
+
+Files: `zz_ModFixes_RealUSAStories.lua`, `zz_ModFixes_RealUSAStoriesData.lua`
